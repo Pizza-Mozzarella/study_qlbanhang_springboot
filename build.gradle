@@ -1,0 +1,56 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '4.1.1'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.springmasterclass'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// ==========================================
+	// 1. SPRING BOOT STARTERS (Web, JPA, Validation)
+	// ==========================================
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	// ==========================================
+	// 2. DATABASE DRIVERS (Runtime)
+	// ==========================================
+	runtimeOnly 'com.mysql:mysql-connector-j'
+	runtimeOnly 'org.postgresql:postgresql'
+
+	// ==========================================
+	// 3. MAPSTRUCT & LOMBOK (Xếp đúng thứ tự chạy)
+	// ==========================================
+	// Thư viện để viết code
+	implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+	compileOnly 'org.projectlombok:lombok'
+
+	// Annotation Processors (BẮT BUỘC ĐÚNG THỨ TỰ TỪ TRÊN XUỐNG):
+	annotationProcessor 'org.projectlombok:lombok'                             // 1. Lombok chạy trước
+	annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'     // 2. Cầu nối ở giữa
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'      // 3. MapStruct chạy sau cùng
+
+	// ==========================================
+	// 4. TESTING
+	// ==========================================
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
