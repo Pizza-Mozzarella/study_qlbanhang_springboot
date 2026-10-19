@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void deleteALLUser() {
+    public void deleteAllUsers() {
         userRepository.deleteAll();
     }
 }

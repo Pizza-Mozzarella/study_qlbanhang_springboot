@@ -55,7 +55,7 @@ public class UserController extends BaseController {
 
     @DeleteMapping
     public ApiResponse<String> deleteAll() {
-        userService.deleteALLUser();
+        userService.deleteAllUsers();
         return createSuccessResponse("da delete thanh cong tat ca user");
     }
 

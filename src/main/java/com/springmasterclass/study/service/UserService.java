@@ -4,13 +4,12 @@ import com.springmasterclass.study.dto.request.UserRequest;
 import com.springmasterclass.study.dto.response.PageResponse;
 import com.springmasterclass.study.dto.response.UserResponse;
 
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 
 public interface UserService {
 
-    public PageResponse<UserResponse> getAllUser(Pageable pageable);
+    PageResponse<UserResponse> getAllUser(Pageable pageable);
 
     UserResponse getUserById(String id);
 
@@ -20,6 +19,6 @@ public interface UserService {
 
     void deleteUserById(String id);
 
-    void deleteALLUser();
+    void deleteAllUsers();
 
 }
