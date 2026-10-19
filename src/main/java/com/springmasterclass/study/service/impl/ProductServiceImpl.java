@@ -35,27 +35,27 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductResponse getProductById(String id) {
+    public ProductResponse getProductById(Long id) {
         return null;
     }
 
     @Override
-    public ProductResponse createProduct(ProductRequest ProductRequest) {
+    public ProductResponse createProduct(ProductRequest productRequest) {
         return null;
     }
 
     @Override
-    public ProductResponse updateProductById(String id, ProductRequest ProductRequest) {
+    public ProductResponse updateProductById(Long id, ProductRequest productRequest) {
         return null;
     }
 
     @Override
-    public void deleteProductById(String id) {
+    public void deleteProductById(Long id) {
 
     }
 
     @Override
-    public void deleteALLProduct() {
+    public void deleteAllProducts() {
 
     }
 }

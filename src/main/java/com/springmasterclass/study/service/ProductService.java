@@ -2,24 +2,20 @@ package com.springmasterclass.study.service;
 
 import com.springmasterclass.study.dto.request.ProductRequest;
 import com.springmasterclass.study.dto.request.ProductSearchCriteria;
-import com.springmasterclass.study.dto.request.UserRequest;
 import com.springmasterclass.study.dto.response.PageResponse;
 import com.springmasterclass.study.dto.response.ProductResponse;
-import com.springmasterclass.study.dto.response.UserResponse;
 import org.springframework.data.domain.Pageable;
 
 public interface ProductService {
-    // PageResponse<ProductResponse> getAllProducts(Pageable pageable);
-
     PageResponse<ProductResponse> searchProducts(ProductSearchCriteria criteria, Pageable pageable);
 
-    ProductResponse getProductById(String id);
+    ProductResponse getProductById(Long id);
 
-    ProductResponse createProduct(ProductRequest ProductRequest);
+    ProductResponse createProduct(ProductRequest productRequest);
 
-    ProductResponse updateProductById(String id, ProductRequest ProductRequest);
+    ProductResponse updateProductById(Long id, ProductRequest productRequest);
 
-    void deleteProductById(String id);
+    void deleteProductById(Long id);
 
-    void deleteALLProduct();
+    void deleteAllProducts();
 }
