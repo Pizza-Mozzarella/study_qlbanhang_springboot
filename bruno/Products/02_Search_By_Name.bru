@@ -1,0 +1,17 @@
+meta {
+  name: 02. Search Products By Name
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/products?name=Sản phẩm mẫu 7&page=2&size=20
+  body: none
+  auth: none
+}
+
+params:query {
+  name: Sản phẩm mẫu 7
+  page: 2
+  size: 20
+}

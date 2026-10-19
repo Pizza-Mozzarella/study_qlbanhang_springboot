@@ -1,17 +1,23 @@
 package com.springmasterclass.study.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "products")
+@Getter
+@Setter
 @NoArgsConstructor
-@Data
+@ToString(exclude = "category")
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Product {
     @Id
-    // turn on the auto generate id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)

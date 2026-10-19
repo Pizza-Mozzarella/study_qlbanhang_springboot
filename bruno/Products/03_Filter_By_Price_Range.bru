@@ -1,0 +1,16 @@
+meta {
+  name: 03. Filter Products By Price Range
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/products?minPrice=5000000&maxPrice=25000000
+  body: none
+  auth: none
+}
+
+params:query {
+  minPrice: 5000000
+  maxPrice: 25000000
+}

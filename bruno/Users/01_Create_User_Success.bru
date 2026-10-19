@@ -1,0 +1,32 @@
+meta {
+  name: 01. Create User (Success - 201)
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/users
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "username": "khangdev",
+    "password": "Password123@",
+    "email": "khangdev@gmail.com",
+    "name": "Vuong Quoc Khang",
+    "phone": "0987654321",
+    "address": "Ho Chi Minh City"
+  }
+}
+
+script:post-response {
+  if (res.body && res.body.result && res.body.result.id) {
+    bru.setEnvVar("sampleUserId", res.body.result.id);
+  }
+}

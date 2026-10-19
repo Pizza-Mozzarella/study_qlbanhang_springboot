@@ -1,0 +1,21 @@
+meta {
+  name: 05. Combined Filter, Sort and Pagination
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/products?name=dell&minPrice=10000000&maxPrice=35000000&categoryId=1&page=0&size=5&sort=sellPrice,desc
+  body: none
+  auth: none
+}
+
+params:query {
+  name: dell
+  minPrice: 10000000
+  maxPrice: 35000000
+  categoryId: 1
+  page: 0
+  size: 5
+  sort: sellPrice,desc
+}

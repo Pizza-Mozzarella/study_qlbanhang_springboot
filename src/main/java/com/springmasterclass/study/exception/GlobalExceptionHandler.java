@@ -1,85 +1,54 @@
 package com.springmasterclass.study.exception;
 
-
+import com.springmasterclass.study.common.ApiResponse;
 import com.springmasterclass.study.exception.exception.BadRequestException;
 import com.springmasterclass.study.exception.exception.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.Map;
 
-
-@ControllerAdvice(basePackages = "com.springmasterclass.study")
+@RestControllerAdvice
 public class GlobalExceptionHandler {
 
-
     @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<Map<String, Object>> handleNotFound(NotFoundException ex) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of(
-                "status", 404,
-                "message", ex.getMessage(),
-                "timestamp", LocalDateTime.now()
-        ));
+    public ResponseEntity<ApiResponse<Void>> handleNotFound(NotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(ApiResponse.error(HttpStatus.NOT_FOUND.value(), ex.getMessage()));
     }
 
     @ExceptionHandler(BadRequestException.class)
-    public ResponseEntity<Map<String, Object>> handleBadRequest(BadRequestException ex) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of(
-                "status", 400,
-                "message", ex.getMessage(),
-                "timestamp", LocalDateTime.now()
-        ));
+    public ResponseEntity<ApiResponse<Void>> handleBadRequest(BadRequestException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(ApiResponse.error(HttpStatus.BAD_REQUEST.value(), ex.getMessage()));
     }
 
-
-    // MethodArgumentNotValidException là exception của validation
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String, Object>> handleValidationExceptions(MethodArgumentNotValidException ex) {
-
-        // Gom tất cả các trường bị lỗi thành Map<tên_field, câu_chửi>
-        Map<String, String> errors = new java.util.HashMap<>();
-        ex.getBindingResult().getFieldErrors().forEach(error -> {
+    public ResponseEntity<ApiResponse<Map<String, String>>> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        for (FieldError error : ex.getBindingResult().getFieldErrors()) {
             errors.put(error.getField(), error.getDefaultMessage());
-        });
+        }
 
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of(
-                "status", 400,
-                "error", "Validation Error",
-                "errors", errors, // Trả danh sách chi tiết từng trường
-                "timestamp", LocalDateTime.now()
-        ));
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(ApiResponse.error(HttpStatus.BAD_REQUEST.value(), "Validation Error", errors));
     }
 
-    /* chỉ hiện 1 lỗi 1 lần
-     @ExceptionHandler(MethodArgumentNotValidException.class) // Hoặc BindException
-    public ResponseEntity<Map<String, Object>> handleValidationExceptions(MethodArgumentNotValidException ex) {
-
-        // 1. Lấy thông báo lỗi đầu tiên (hoặc gom hết lỗi nếu muốn)
-        String message = ex.getBindingResult().getAllErrors().get(0).getDefaultMessage();
-
-        // 2. Trả về JSON đàng hoàng với ResponseEntity
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of(
-                "status", 400,
-                "error", "Validation Error",
-                "message", message,
-                "timestamp", LocalDateTime.now()
-        ));
+    @ExceptionHandler(org.springframework.web.method.annotation.MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<ApiResponse<Void>> handleTypeMismatch(org.springframework.web.method.annotation.MethodArgumentTypeMismatchException ex) {
+        String message = String.format("Tham số '%s' có giá trị không hợp lệ: '%s'", ex.getName(), ex.getValue());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(ApiResponse.error(HttpStatus.BAD_REQUEST.value(), message));
     }
-     */
-
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<Map<String, Object>> handleGeneral(Exception ex) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of(
-                "status", 500,
-                "message", "Đã xảy ra lỗi hệ thống. Vui lòng thử lại sau!",  // ← CHE GIẤU LỖI!
-                "timestamp", LocalDateTime.now()
-        ));
+    public ResponseEntity<ApiResponse<Void>> handleGeneral(Exception ex) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(ApiResponse.error(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Đã xảy ra lỗi hệ thống. Vui lòng thử lại sau!"));
     }
-
 }

@@ -1,0 +1,26 @@
+meta {
+  name: 05. Update User By ID
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{baseUrl}}/users/{{sampleUserId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "username": "khangdev_pro",
+    "password": "NewPassword123@",
+    "email": "khang_updated@gmail.com",
+    "name": "Vuong Quoc Khang (Updated)",
+    "phone": "0912345678",
+    "address": "Da Nang City"
+  }
+}

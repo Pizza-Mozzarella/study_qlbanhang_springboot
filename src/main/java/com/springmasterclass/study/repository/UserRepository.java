@@ -1,7 +1,9 @@
 package com.springmasterclass.study.repository;
 
+import com.springmasterclass.study.model.Product;
 import com.springmasterclass.study.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 

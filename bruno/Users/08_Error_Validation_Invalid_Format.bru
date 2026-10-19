@@ -1,0 +1,26 @@
+meta {
+  name: 08. [Error] Create User - Invalid Format (400)
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{baseUrl}}/users
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "username": "abc",
+    "password": "123",
+    "email": "invalid-email-address",
+    "name": "Nguyen Van A",
+    "phone": "123",
+    "address": "HN"
+  }
+}
