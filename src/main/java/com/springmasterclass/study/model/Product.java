@@ -1,11 +1,9 @@
 package com.springmasterclass.study.model;
 
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "products")
@@ -28,4 +26,11 @@ public class Product {
     private double sellPrice;
     private double costPrice;
     private int stock;
+    private LocalDateTime createdAt;
+
+
+    @PrePersist
+    private void onCreate() {
+        this.createdAt = LocalDateTime.now();
+    }
 }

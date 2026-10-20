@@ -1,0 +1,17 @@
+meta {
+  name: 06. Create
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/products
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+  forwardAuthorizationHeader: false
+}

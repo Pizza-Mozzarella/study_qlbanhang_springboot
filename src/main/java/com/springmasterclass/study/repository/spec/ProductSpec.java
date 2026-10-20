@@ -3,6 +3,8 @@ package com.springmasterclass.study.repository.spec;
 import com.springmasterclass.study.model.Product;
 import org.springframework.data.jpa.domain.Specification;
 
+import java.time.LocalDateTime;
+
 public final class ProductSpec {
 
     private ProductSpec() {}
@@ -44,6 +46,19 @@ public final class ProductSpec {
             return Specification.unrestricted();
         }
         return (root, query, cb) -> cb.equal(root.get("category").get("id"), categoryId);
+    }
+
+    public static Specification<Product> createdWithinDays(Integer days) {
+        if (days == null) {
+            return Specification.unrestricted();
+        }
+        return (root, query, cb) -> {
+             java.time.LocalDateTime daysWithIn = LocalDateTime.now().minusDays(days);
+
+             return cb.greaterThanOrEqualTo(root.get("createdAt"), daysWithIn);
+
+        };
+
     }
 
 }

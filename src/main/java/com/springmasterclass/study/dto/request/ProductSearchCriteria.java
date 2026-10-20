@@ -4,6 +4,7 @@ public record ProductSearchCriteria(
         String name,
         Double minPrice,
         Double maxPrice,
-        Long categoryId
+        Long categoryId,
+        Integer days
 ) {
 }

@@ -32,7 +32,8 @@ public class ProductServiceImpl implements ProductService {
         Specification<Product> spec = Specification.where(ProductSpec.inStock())
                 .and(ProductSpec.nameContains(criteria.name()))
                 .and(ProductSpec.hasCategory(criteria.categoryId()))
-                .and(ProductSpec.sellPriceBetween(criteria.minPrice(), criteria.maxPrice()));
+                .and(ProductSpec.sellPriceBetween(criteria.minPrice(), criteria.maxPrice()))
+                .and(ProductSpec.createdWithinDays(criteria.days()));
 
         Page<Product> productPage = productRepository.findAll(spec, pageable);
         return PageResponse.from(productPage.map(productMapper::toResponse));

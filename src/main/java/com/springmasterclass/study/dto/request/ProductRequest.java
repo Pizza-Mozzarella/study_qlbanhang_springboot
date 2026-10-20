@@ -13,5 +13,8 @@ public record   ProductRequest (
         @NotNull(message = "Category ID không được để trống")
         Long categoryId,
         @Min(value = 0, message = "Số lượng tồn kho không được nhỏ hơn 0")
-        int stock
+        int stock,
+        @Min(value = 0, message = "Ngày tạo gần đây không được âm")
+        Integer days
 ) { }
+
