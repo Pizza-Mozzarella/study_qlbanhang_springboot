@@ -5,6 +5,6 @@ public record ProductSearchCriteria(
         Double minPrice,
         Double maxPrice,
         Long categoryId,
-        Integer days
+        Integer createdWithinDays
 ) {
 }
