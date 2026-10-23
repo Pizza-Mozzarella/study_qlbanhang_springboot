@@ -63,23 +63,27 @@ public class CategoryServiceImpl extends BaseCrudService<Category, Long, Categor
     }
 
     @Override
+    @Transactional
     public CategoryResponse createCategory(CategoryRequest categoryRequest) {
         return create(categoryRequest);
     }
 
     @Override
+    @Transactional
     public CategoryResponse updateCategoryById(Long id, CategoryRequest categoryRequest) {
         return updateById(id, categoryRequest);
     }
 
     @Override
+    @Transactional
     public void deleteCategoryById(Long id) {
         deleteById(id);
     }
 
     @Override
+    @Transactional
     public void deleteAllCategories() {
-        categoryRepository.deleteAll();
+        deleteAll();
     }
 
     // --

@@ -76,21 +76,25 @@ public class ProductServiceImpl
     }
 
     @Override
+    @Transactional
     public ProductResponse createProduct(ProductRequest request) {
         return create(request);
     }
 
     @Override
+    @Transactional
     public ProductResponse updateProductById(Long id, ProductRequest request) {
         return updateById(id, request);
     }
 
     @Override
+    @Transactional
     public void deleteProductById(Long id) {
         deleteById(id);
     }
 
     @Override
+    @Transactional
     public void deleteAllProducts() {
         deleteAll();
     }

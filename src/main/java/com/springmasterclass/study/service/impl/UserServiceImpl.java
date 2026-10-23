@@ -62,21 +62,25 @@ public class UserServiceImpl extends BaseCrudService<User, String, UserRequest, 
     }
 
     @Override
+    @Transactional
     public UserResponse createUser(UserRequest userRequest) {
         return create(userRequest);
     }
 
     @Override
+    @Transactional
     public UserResponse updateUserById(String id, UserRequest userRequest) {
         return updateById(id, userRequest);
     }
 
     @Override
+    @Transactional
     public void deleteUserById(String id) {
         deleteById(id);
     }
 
     @Override
+    @Transactional
     public void deleteAllUsers() {
         deleteAll();
     }

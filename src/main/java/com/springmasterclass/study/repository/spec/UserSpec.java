@@ -14,7 +14,7 @@ public final class UserSpec {
         }
 
         String pattern =  "%" + keyword.trim().toLowerCase() + "%";
-        return ((root, query, cb) -> cb.like(root.get("name"), pattern));
+        return ((root, query, cb) -> cb.like(cb.lower(root.get("name")), pattern));
     }
 
 }

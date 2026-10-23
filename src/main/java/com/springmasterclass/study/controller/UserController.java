@@ -2,6 +2,7 @@ package com.springmasterclass.study.controller;
 
 import com.springmasterclass.study.common.ApiResponse;
 import com.springmasterclass.study.common.BaseController;
+import com.springmasterclass.study.dto.request.UserSearchCriteria;
 import com.springmasterclass.study.dto.response.PageResponse;
 import com.springmasterclass.study.service.UserService;
 import com.springmasterclass.study.dto.request.UserRequest;
@@ -26,9 +27,10 @@ public class UserController extends BaseController {
 
     @GetMapping
     public ApiResponse<PageResponse<UserResponse>> index(
+            @ModelAttribute UserSearchCriteria userSearchCriteria,
             @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable
     ) {
-        return createSuccessResponse(userService.getAllUser(pageable));
+        return createSuccessResponse(userService.searchUsers(userSearchCriteria ,pageable));
     }
 
     @GetMapping("/{id}")
