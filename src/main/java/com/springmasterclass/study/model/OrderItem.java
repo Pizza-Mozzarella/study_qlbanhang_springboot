@@ -3,8 +3,6 @@ package com.springmasterclass.study.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-// Tạm gỡ @Entity: để dành triển khai ở chương Order (quan hệ qua OrderItem).
-// Giữ @Entity khi chưa có @Id sẽ khiến Hibernate không khởi động được app.
 @NoArgsConstructor
 @Getter
 @Setter
@@ -27,7 +25,7 @@ public class OrderItem {
     private Order order;
 
     private int quantity;
-    private double price;
+    private double sellPrice;
 
 
 }
