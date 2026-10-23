@@ -16,9 +16,8 @@ public final class ProductSpec {
         }
         String pattern = "%"  + keyword.trim().toLowerCase() + "%";
         return (root, query, cb) -> cb.like(cb.lower(root.get("name")), pattern);
-
-
     }
+
     /** Lọc theo khoảng giá bán [min, max] */
     public static Specification<Product> sellPriceBetween(Double min, Double max) {
         if (min == null && max == null) {

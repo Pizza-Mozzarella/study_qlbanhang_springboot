@@ -5,7 +5,11 @@ meta {
 }
 
 get {
-  url: {{baseUrl}}/products
+  url: {{baseUrl}}/products?days=1
   body: none
   auth: none
+}
+
+params:query {
+  days: 1
 }

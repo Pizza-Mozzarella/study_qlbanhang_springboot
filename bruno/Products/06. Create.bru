@@ -6,8 +6,18 @@ meta {
 
 post {
   url: {{baseUrl}}/products
-  body: none
+  body: json
   auth: inherit
+}
+
+body:json {
+  {
+    "name": "TestCreated2",
+    "sellPrice": 1.0,
+    "costPrice": 0.00,
+    "categoryId": 1,
+    "stock": 4
+  }
 }
 
 settings {

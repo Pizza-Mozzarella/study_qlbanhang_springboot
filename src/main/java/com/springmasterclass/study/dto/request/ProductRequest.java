@@ -2,7 +2,7 @@ package com.springmasterclass.study.dto.request;
 
 import jakarta.validation.constraints.*;
 
-public record   ProductRequest (
+public record ProductRequest (
         @NotBlank(message = "Tên sản phẩm không được để trống")
         @Size(min = 3, max = 100, message = "Tên sản phẩm phải từ 3 đến 100 ký tự")
         String name,

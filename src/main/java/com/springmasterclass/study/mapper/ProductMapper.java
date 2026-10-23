@@ -11,6 +11,7 @@ import org.mapstruct.MappingTarget;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface ProductMapper {
 
+    @Mapping(target = "createdAt", ignore = true)
     ProductResponse toResponse(Product product);
 
     // Tạo entity mới cho luồng create.

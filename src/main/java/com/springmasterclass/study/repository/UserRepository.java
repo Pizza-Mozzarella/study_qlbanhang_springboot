@@ -1,10 +1,12 @@
 package com.springmasterclass.study.repository;
 
+import com.springmasterclass.study.model.Category;
 import com.springmasterclass.study.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface UserRepository extends JpaRepository<User, String> {
+public interface UserRepository extends JpaRepository<User, String>, JpaSpecificationExecutor<User> {
 }
