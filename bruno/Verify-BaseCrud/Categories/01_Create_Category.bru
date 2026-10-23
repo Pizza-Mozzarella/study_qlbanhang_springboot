@@ -1,0 +1,25 @@
+meta {
+  name: 01. [Verify] Create Category
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/categories
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {"name": "Verify Category"}
+}
+
+script:post-response {
+  if (res.body && res.body.result && res.body.result.id) {
+    bru.setEnvVar("verifyCategoryId", res.body.result.id);
+  }
+}

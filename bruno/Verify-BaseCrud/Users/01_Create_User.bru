@@ -1,0 +1,32 @@
+meta {
+  name: 01. [Verify] Create User
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/users
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "username": "verify_user",
+    "password": "Password123@",
+    "email": "verify_user@gmail.com",
+    "name": "Verify User",
+    "phone": "0900000001",
+    "address": "Ho Chi Minh City"
+  }
+}
+
+script:post-response {
+  if (res.body && res.body.result && res.body.result.id) {
+    bru.setEnvVar("verifyUserId", res.body.result.id);
+  }
+}

@@ -1,0 +1,11 @@
+meta {
+  name: 05. [Verify] Delete Category
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseUrl}}/categories/{{verifyCategoryId}}
+  body: none
+  auth: none
+}

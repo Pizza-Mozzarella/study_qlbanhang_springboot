@@ -1,0 +1,11 @@
+meta {
+  name: 06. [Verify] Get Category After Delete (Expect 404)
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/categories/{{verifyCategoryId}}
+  body: none
+  auth: none
+}

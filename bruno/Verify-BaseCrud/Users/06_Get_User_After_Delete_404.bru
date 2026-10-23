@@ -1,0 +1,11 @@
+meta {
+  name: 06. [Verify] Get User After Delete (Expect 404)
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/users/{{verifyUserId}}
+  body: none
+  auth: none
+}

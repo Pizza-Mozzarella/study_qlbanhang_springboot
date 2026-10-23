@@ -1,0 +1,11 @@
+meta {
+  name: 05. [Verify] Delete Product
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseUrl}}/products/{{verifyProductId}}
+  body: none
+  auth: none
+}

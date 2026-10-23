@@ -1,0 +1,26 @@
+meta {
+  name: 03. [Verify] Update User
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{baseUrl}}/users/{{verifyUserId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "username": "verify_user",
+    "password": "NewPassword123@",
+    "email": "verify_updated@gmail.com",
+    "name": "Verify User Updated",
+    "phone": "0900000002",
+    "address": "Da Nang City"
+  }
+}

@@ -1,0 +1,19 @@
+meta {
+  name: 03. [Verify] Update Category
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{baseUrl}}/categories/{{verifyCategoryId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {"name": "Verify Category Updated"}
+}

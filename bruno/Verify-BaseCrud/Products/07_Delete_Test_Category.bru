@@ -1,0 +1,11 @@
+meta {
+  name: 07. [Verify] Cleanup - Delete Test Category
+  type: http
+  seq: 7
+}
+
+delete {
+  url: {{baseUrl}}/categories/{{verifyCategoryId}}
+  body: none
+  auth: none
+}

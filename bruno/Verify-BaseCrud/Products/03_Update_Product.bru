@@ -1,0 +1,25 @@
+meta {
+  name: 03. [Verify] Update Product
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{baseUrl}}/products/{{verifyProductId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "name": "Verify Product Updated",
+    "sellPrice": 120.0,
+    "costPrice": 90.0,
+    "categoryId": {{verifyCategoryId}},
+    "stock": 9
+  }
+}

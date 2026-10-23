@@ -1,0 +1,11 @@
+meta {
+  name: 06. [Verify] Get Product After Delete (Expect 404)
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/products/{{verifyProductId}}
+  body: none
+  auth: none
+}

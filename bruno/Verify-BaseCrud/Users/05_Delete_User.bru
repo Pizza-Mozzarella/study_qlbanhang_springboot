@@ -1,0 +1,11 @@
+meta {
+  name: 05. [Verify] Delete User
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseUrl}}/users/{{verifyUserId}}
+  body: none
+  auth: none
+}
