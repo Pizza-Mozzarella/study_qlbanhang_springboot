@@ -1,8 +1,8 @@
 package com.springmasterclass.study.mapper;
 
-import com.springmasterclass.study.model.Product;
 import com.springmasterclass.study.dto.request.ProductRequest;
 import com.springmasterclass.study.dto.response.ProductResponse;
+import com.springmasterclass.study.model.Product;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;

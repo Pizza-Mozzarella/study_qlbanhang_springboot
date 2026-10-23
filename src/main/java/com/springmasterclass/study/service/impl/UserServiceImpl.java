@@ -1,18 +1,16 @@
 package com.springmasterclass.study.service.impl;
 
+import com.springmasterclass.study.dto.request.UserRequest;
 import com.springmasterclass.study.dto.request.UserSearchCriteria;
 import com.springmasterclass.study.dto.response.PageResponse;
-import com.springmasterclass.study.exception.exception.NotFoundException;
+import com.springmasterclass.study.dto.response.UserResponse;
 import com.springmasterclass.study.mapper.UserMapper;
 import com.springmasterclass.study.model.User;
 import com.springmasterclass.study.repository.UserRepository;
-import com.springmasterclass.study.dto.request.UserRequest;
-import com.springmasterclass.study.dto.response.UserResponse;
 import com.springmasterclass.study.repository.spec.UserSpec;
 import com.springmasterclass.study.service.BaseCrudService;
 import com.springmasterclass.study.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.BeanRegistry;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;

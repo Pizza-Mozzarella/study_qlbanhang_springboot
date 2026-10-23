@@ -2,15 +2,13 @@ package com.springmasterclass.study.controller;
 
 import com.springmasterclass.study.common.ApiResponse;
 import com.springmasterclass.study.common.BaseController;
+import com.springmasterclass.study.dto.request.UserRequest;
 import com.springmasterclass.study.dto.request.UserSearchCriteria;
 import com.springmasterclass.study.dto.response.PageResponse;
-import com.springmasterclass.study.service.UserService;
-import com.springmasterclass.study.dto.request.UserRequest;
 import com.springmasterclass.study.dto.response.UserResponse;
+import com.springmasterclass.study.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;

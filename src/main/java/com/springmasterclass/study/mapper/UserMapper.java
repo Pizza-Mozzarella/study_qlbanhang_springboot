@@ -1,14 +1,9 @@
 package com.springmasterclass.study.mapper;
 
-import com.springmasterclass.study.model.User;
 import com.springmasterclass.study.dto.request.UserRequest;
 import com.springmasterclass.study.dto.response.UserResponse;
-import org.mapstruct.BeanMapping;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingConstants;
-import org.mapstruct.MappingTarget;
-import org.mapstruct.NullValuePropertyMappingStrategy;
+import com.springmasterclass.study.model.User;
+import org.mapstruct.*;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface UserMapper {

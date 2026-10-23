@@ -1,14 +1,9 @@
 package com.springmasterclass.study.mapper;
 
-import com.springmasterclass.study.model.Category;
 import com.springmasterclass.study.dto.request.CategoryRequest;
 import com.springmasterclass.study.dto.response.CategoryResponse;
-import org.mapstruct.BeanMapping;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingConstants;
-import org.mapstruct.MappingTarget;
-import org.mapstruct.NullValuePropertyMappingStrategy;
+import com.springmasterclass.study.model.Category;
+import org.mapstruct.*;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface CategoryMapper {

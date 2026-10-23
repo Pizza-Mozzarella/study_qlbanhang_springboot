@@ -3,8 +3,6 @@ package com.springmasterclass.study.repository.spec;
 import com.springmasterclass.study.model.User;
 import org.springframework.data.jpa.domain.Specification;
 
-import java.util.Locale;
-
 public final class UserSpec {
     private UserSpec() {}
 
