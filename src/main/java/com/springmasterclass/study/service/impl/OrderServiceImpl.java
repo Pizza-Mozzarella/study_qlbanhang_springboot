@@ -76,7 +76,9 @@ public class OrderServiceImpl extends BaseCrudService<Order, Long, OrderRequest,
 
     @Override
     public OrderResponse getOrderById(Long id) {
-        return getById(id);
+        Order order = orderRepository.findWithDetailsById(id)
+                .orElseThrow(() -> new NotFoundException("Order not found with id: " + id));
+        return orderMapper.toResponse(order);
     }
 
     @Override
