@@ -1,10 +1,18 @@
 package com.springmasterclass.study.service.impl;
 
+import com.springmasterclass.study.dto.request.OrderItemRequest;
 import com.springmasterclass.study.dto.request.OrderRequest;
 import com.springmasterclass.study.dto.response.OrderResponse;
+import com.springmasterclass.study.exception.exception.NotFoundException;
+import com.springmasterclass.study.mapper.OrderItemMapper;
 import com.springmasterclass.study.mapper.OrderMapper;
 import com.springmasterclass.study.model.Order;
+import com.springmasterclass.study.model.OrderItem;
+import com.springmasterclass.study.model.Product;
+import com.springmasterclass.study.model.User;
 import com.springmasterclass.study.repository.OrderRepository;
+import com.springmasterclass.study.repository.ProductRepository;
+import com.springmasterclass.study.repository.UserRepository;
 import com.springmasterclass.study.service.BaseCrudService;
 import com.springmasterclass.study.service.OrderService;
 import lombok.AllArgsConstructor;
@@ -21,6 +29,10 @@ public class OrderServiceImpl extends BaseCrudService<Order, Long, OrderRequest,
 
     private final OrderRepository orderRepository;
     private final OrderMapper orderMapper;
+    private final OrderItemMapper orderItemMapper;
+
+    private final UserRepository userRepository;
+    private final ProductRepository productRepository;
 
 
 
@@ -50,11 +62,56 @@ public class OrderServiceImpl extends BaseCrudService<Order, Long, OrderRequest,
     }
 
     @Override
+    protected void enrich(OrderRequest orderRequest, Order order) {
+        checkUserExist(orderRequest, order);
+        calculateTotalPrice(orderRequest, order);
+        updateStatus(order);
+    }
+
+    @Override
     @Transactional
     public OrderResponse createOrder(OrderRequest orderRequest) {
         return create(orderRequest);
     }
 
+    // helper của order
+
+    void checkUserExist(OrderRequest orderRequest, Order order) {
+        User user = userRepository.findById(orderRequest.userId())
+                .orElseThrow(() -> new NotFoundException("Khong tim thay User voi id: " + order.getUser().getId()));
+        order.setUser(user);
+    }
+
+    void calculateTotalPrice(OrderRequest orderRequest, Order order) {
+
+        order.getOrderItemList().clear();
 
 
+
+
+        double totalPrice = 0;
+        for (OrderItemRequest orderItemRequest :  orderRequest.orderItemList()) {
+
+            Product product = productRepository.findById(orderItemRequest.productId())
+                    .orElseThrow(() -> new NotFoundException("khong tim thay product voi id: " + orderItemRequest.productId()));
+
+            OrderItem orderItem = orderItemMapper.toEntity(orderItemRequest);
+
+            orderItem.setProduct(product);
+            orderItem.setQuantity(orderItemRequest.quantity());
+            orderItem.setOrder(order);
+            orderItem.setPriceAtPurchase(product.getSellPrice());
+
+            order.getOrderItemList().add(orderItem);
+
+
+            totalPrice += orderItem.getPriceAtPurchase() * orderItem.getQuantity();
+        }
+        order.setTotalPrice(totalPrice);
+    }
+
+
+    void updateStatus(Order order) {
+        order.setStatus("PENDING");
+    }
 }

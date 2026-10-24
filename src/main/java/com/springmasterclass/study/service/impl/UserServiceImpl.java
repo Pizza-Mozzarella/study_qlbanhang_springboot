@@ -25,6 +25,7 @@ public class UserServiceImpl extends BaseCrudService<User, String, UserRequest, 
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+
     //---
 
     @Override
