@@ -80,11 +80,13 @@ public class OrderServiceImpl extends BaseCrudService<Order, Long, OrderRequest,
     }
 
     @Override
+    @Transactional
     public OrderResponse updateOrderById(Long id, OrderRequest request) {
         return updateById(id, request);
     }
 
     @Override
+    @Transactional
     public void deleteOrderById(Long id) {
         deleteById(id);
     }
