@@ -74,6 +74,21 @@ public class OrderServiceImpl extends BaseCrudService<Order, Long, OrderRequest,
         return create(orderRequest);
     }
 
+    @Override
+    public OrderResponse getOrderById(Long id) {
+        return getById(id);
+    }
+
+    @Override
+    public OrderResponse updateOrderById(Long id, OrderRequest request) {
+        return updateById(id, request);
+    }
+
+    @Override
+    public void deleteOrderById(Long id) {
+        deleteById(id);
+    }
+
     // helper của order
 
     void checkUserExist(OrderRequest orderRequest, Order order) {

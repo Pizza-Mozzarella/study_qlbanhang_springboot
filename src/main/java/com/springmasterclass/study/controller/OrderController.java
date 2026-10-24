@@ -23,5 +23,20 @@ public class OrderController extends BaseController {
         return createSuccessResponse(orderService.createOrder(orderRequest));
     }
 
+    @GetMapping("/{id}")
+    public ApiResponse<OrderResponse> show(@PathVariable Long id) {
+        return createSuccessResponse(orderService.getOrderById(id));
+    }
+
+    @PutMapping("/{id}")
+    public ApiResponse<OrderResponse> update(@PathVariable Long id, @Valid @RequestBody OrderRequest orderRequest) {
+        return createSuccessResponse(orderService.updateOrderById(id, orderRequest));
+    }
+
+    @DeleteMapping("/{id}")
+    public ApiResponse<String> delete(@PathVariable Long id) {
+        orderService.deleteOrderById(id);
+        return createSuccessResponse("Đã xóa thành công đơn hàng có id: " + id);
+    }
 
 }
