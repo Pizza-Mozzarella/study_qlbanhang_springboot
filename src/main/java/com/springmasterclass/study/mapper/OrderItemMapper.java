@@ -9,11 +9,12 @@ import org.mapstruct.MappingConstants;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface OrderItemMapper {
-
-
     OrderItemResponse toResponse(OrderItem orderItem);
 
+    // product tu set tay = productId, order
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "product", ignore = true)
+    @Mapping(target = "order", ignore = true)
     OrderItem toEntity(OrderItemRequest orderItemRequest);
 
 }
