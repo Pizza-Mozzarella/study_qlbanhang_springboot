@@ -6,6 +6,7 @@ import com.springmasterclass.study.common.BaseController;
 import com.springmasterclass.study.dto.request.OrderRequest;
 import com.springmasterclass.study.dto.response.OrderResponse;
 import com.springmasterclass.study.service.OrderService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,11 +15,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/v1/orders")
 @RequiredArgsConstructor
 public class OrderController extends BaseController {
-    OrderService orderService;
+    private final OrderService orderService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ApiResponse<OrderResponse> create(@RequestParam OrderRequest orderRequest) {
+    public ApiResponse<OrderResponse> create(@Valid @RequestBody OrderRequest orderRequest) {
         return createSuccessResponse(orderService.createOrder(orderRequest));
     }
 

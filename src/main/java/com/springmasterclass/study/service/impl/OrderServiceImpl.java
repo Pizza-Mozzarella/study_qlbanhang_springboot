@@ -78,7 +78,7 @@ public class OrderServiceImpl extends BaseCrudService<Order, Long, OrderRequest,
 
     void checkUserExist(OrderRequest orderRequest, Order order) {
         User user = userRepository.findById(orderRequest.userId())
-                .orElseThrow(() -> new NotFoundException("Khong tim thay User voi id: " + order.getUser().getId()));
+                .orElseThrow(() -> new NotFoundException("Khong tim thay User voi id: " + orderRequest.userId()));
         order.setUser(user);
     }
 

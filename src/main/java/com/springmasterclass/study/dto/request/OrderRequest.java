@@ -7,7 +7,6 @@ import java.util.List;
 
 public record OrderRequest (
         String userId,
-        String status,
         List<OrderItemRequest> orderItemList
 ){
 }
