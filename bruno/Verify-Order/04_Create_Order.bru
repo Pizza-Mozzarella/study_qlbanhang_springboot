@@ -1,0 +1,51 @@
+meta {
+  name: 04. [Verify] Create Order
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/orders
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "userId": "{{verifyOrderUserId}}",
+    "orderItemList": [
+      {
+        "productId": {{verifyOrderProductAId}},
+        "quantity": 2
+      },
+      {
+        "productId": {{verifyOrderProductBId}},
+        "quantity": 1
+      }
+    ]
+  }
+}
+
+script:post-response {
+  if (res.body && res.body.result && res.body.result.id) {
+    bru.setEnvVar("verifyOrderId", res.body.result.id);
+  }
+}
+
+tests {
+  test("status is 201", function() {
+    expect(res.getStatus()).to.equal(201);
+  });
+
+  test("total is 2x100 + 1x50 = 250", function() {
+    expect(res.getBody().result.totalPrice).to.equal(250);
+  });
+
+  test("order has 2 items", function() {
+    expect(res.getBody().result.orderItemList.length).to.equal(2);
+  });
+}

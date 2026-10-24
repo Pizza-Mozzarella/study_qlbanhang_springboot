@@ -1,0 +1,11 @@
+meta {
+  name: 08. [Verify] Delete Order
+  type: http
+  seq: 8
+}
+
+delete {
+  url: {{baseUrl}}/orders/{{verifyOrderId}}
+  body: none
+  auth: none
+}

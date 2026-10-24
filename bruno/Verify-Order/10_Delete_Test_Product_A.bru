@@ -1,0 +1,11 @@
+meta {
+  name: 10. [Verify] Cleanup - Delete Product A
+  type: http
+  seq: 10
+}
+
+delete {
+  url: {{baseUrl}}/products/{{verifyOrderProductAId}}
+  body: none
+  auth: none
+}

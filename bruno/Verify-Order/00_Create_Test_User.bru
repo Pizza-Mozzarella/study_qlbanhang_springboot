@@ -1,0 +1,32 @@
+meta {
+  name: 00. [Verify] Setup - Create User For Order
+  type: http
+  seq: 0
+}
+
+post {
+  url: {{baseUrl}}/users
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "username": "verify_order_user",
+    "password": "Password123@",
+    "email": "verify_order_user@gmail.com",
+    "name": "Verify Order User",
+    "phone": "0900000002",
+    "address": "Ho Chi Minh City"
+  }
+}
+
+script:post-response {
+  if (res.body && res.body.result && res.body.result.id) {
+    bru.setEnvVar("verifyOrderUserId", res.body.result.id);
+  }
+}

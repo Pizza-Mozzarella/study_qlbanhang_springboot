@@ -1,0 +1,31 @@
+meta {
+  name: 02. [Verify] Setup - Create Product A For Order
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/products
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "name": "Verify Order Product A",
+    "sellPrice": 100.0,
+    "costPrice": 80.0,
+    "categoryId": {{verifyOrderCategoryId}},
+    "stock": 50
+  }
+}
+
+script:post-response {
+  if (res.body && res.body.result && res.body.result.id) {
+    bru.setEnvVar("verifyOrderProductAId", res.body.result.id);
+  }
+}

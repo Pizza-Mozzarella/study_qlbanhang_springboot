@@ -1,0 +1,11 @@
+meta {
+  name: 13. [Verify] Cleanup - Delete User
+  type: http
+  seq: 13
+}
+
+delete {
+  url: {{baseUrl}}/users/{{verifyOrderUserId}}
+  body: none
+  auth: none
+}

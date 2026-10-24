@@ -1,0 +1,30 @@
+meta {
+  name: 07. [Verify] Get Order - Check Updated
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{baseUrl}}/orders/{{verifyOrderId}}
+  body: none
+  auth: none
+}
+
+tests {
+  test("status is 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+
+  test("product B is gone, only 1 item left", function() {
+    expect(res.getBody().result.orderItemList.length).to.equal(1);
+  });
+
+  test("total is recomputed to 3x100 = 300", function() {
+    expect(res.getBody().result.totalPrice).to.equal(300);
+  });
+
+  test("remaining item keeps price snapshot 100", function() {
+    expect(res.getBody().result.orderItemList[0].priceAtPurchase).to.equal(100);
+    expect(res.getBody().result.orderItemList[0].quantity).to.equal(3);
+  });
+}

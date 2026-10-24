@@ -1,0 +1,17 @@
+meta {
+  name: 09. [Verify] Get Order After Delete (Expect 404)
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{baseUrl}}/orders/{{verifyOrderId}}
+  body: none
+  auth: none
+}
+
+tests {
+  test("status is 404", function() {
+    expect(res.getStatus()).to.equal(404);
+  });
+}

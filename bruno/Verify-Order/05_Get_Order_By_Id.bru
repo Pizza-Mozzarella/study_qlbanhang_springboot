@@ -1,0 +1,21 @@
+meta {
+  name: 05. [Verify] Get Order By Id
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/orders/{{verifyOrderId}}
+  body: none
+  auth: none
+}
+
+tests {
+  test("status is 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+
+  test("total is 250", function() {
+    expect(res.getBody().result.totalPrice).to.equal(250);
+  });
+}
