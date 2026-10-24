@@ -4,7 +4,6 @@ import com.springmasterclass.study.dto.response.UserResponse;
 
 public record OrderItemRequest(
         Long productId,
-        int quantity,
-        double sellPrice
+        int quantity
 ) {
 }

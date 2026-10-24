@@ -4,10 +4,10 @@ import java.util.List;
 
 public record OrderResponse(
         Long id,
-        UserResponse userResponse,
+        UserResponse user,
         // chỉnh sau
         String status,
         double totalPrice,
-        List<OrderItemResponse> orderItemResponseList
+        List<OrderItemResponse> orderItemList
 ) {
 }

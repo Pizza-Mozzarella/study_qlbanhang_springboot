@@ -8,7 +8,6 @@ import java.util.List;
 public record OrderRequest (
         String userId,
         String status,
-        double totalPrice,
-        List<OrderItemRequest> orderItemRequestList
+        List<OrderItemRequest> orderItemList
 ){
 }
