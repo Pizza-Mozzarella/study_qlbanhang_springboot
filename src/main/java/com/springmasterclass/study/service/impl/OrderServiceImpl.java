@@ -21,6 +21,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -108,7 +110,7 @@ public class OrderServiceImpl extends BaseCrudService<Order, Long, OrderRequest,
 
 
 
-        double totalPrice = 0;
+        BigDecimal totalPrice = BigDecimal.valueOf(0);
         for (OrderItemRequest orderItemRequest :  orderRequest.orderItemList()) {
 
             Product product = productRepository.findById(orderItemRequest.productId())
@@ -124,7 +126,7 @@ public class OrderServiceImpl extends BaseCrudService<Order, Long, OrderRequest,
             order.getOrderItemList().add(orderItem);
 
 
-            totalPrice += orderItem.getPriceAtPurchase() * orderItem.getQuantity();
+            totalPrice = totalPrice.add(orderItem.getPriceAtPurchase().multiply(BigDecimal.valueOf( orderItem.getQuantity())));
         }
         order.setTotalPrice(totalPrice);
     }

@@ -1,5 +1,6 @@
 package com.springmasterclass.study.dto.response;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public record OrderResponse(
@@ -7,7 +8,7 @@ public record OrderResponse(
         UserResponse user,
         // chỉnh sau
         String status,
-        double totalPrice,
+        BigDecimal totalPrice,
         List<OrderItemResponse> orderItemList
 ) {
 }

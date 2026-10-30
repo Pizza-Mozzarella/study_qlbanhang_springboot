@@ -3,6 +3,7 @@ package com.springmasterclass.study.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -23,8 +24,8 @@ public class Product {
     private Category category;
 
     private String name;
-    private double sellPrice;
-    private double costPrice;
+    private BigDecimal sellPrice;
+    private BigDecimal costPrice;
     private int stock;
     private LocalDateTime createdAt;
 

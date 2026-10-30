@@ -3,6 +3,7 @@ package com.springmasterclass.study.repository.spec;
 import com.springmasterclass.study.model.Product;
 import org.springframework.data.jpa.domain.Specification;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public final class ProductSpec {
@@ -19,7 +20,7 @@ public final class ProductSpec {
     }
 
     /** Lọc theo khoảng giá bán [min, max] */
-    public static Specification<Product> sellPriceBetween(Double min, Double max) {
+    public static Specification<Product> sellPriceBetween(BigDecimal min, BigDecimal max) {
         if (min == null && max == null) {
             return Specification.unrestricted();
         }

@@ -1,9 +1,11 @@
 package com.springmasterclass.study.dto.response;
 
+import java.math.BigDecimal;
+
 public record ProductResponse (
         Long id,
         String name,
-        double sellPrice,
+        BigDecimal sellPrice,
         CategoryResponse category,
         int stock
 ) {

@@ -3,6 +3,7 @@ package com.springmasterclass.study.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ public class Order {
 
     private String status;
 
-    private double totalPrice;
+    private BigDecimal totalPrice;
 
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)

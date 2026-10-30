@@ -3,6 +3,8 @@ package com.springmasterclass.study.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @NoArgsConstructor
 @Getter
 @Setter
@@ -26,5 +28,5 @@ public class OrderItem {
 
     private int quantity;
 
-    private double priceAtPurchase;
+    private BigDecimal priceAtPurchase;
 }

@@ -1,9 +1,11 @@
 package com.springmasterclass.study.dto.request;
 
+import java.math.BigDecimal;
+
 public record ProductSearchCriteria(
         String name,
-        Double minPrice,
-        Double maxPrice,
+        BigDecimal minPrice,
+        BigDecimal maxPrice,
         Long categoryId,
         Integer createdWithinDays
 ) {
